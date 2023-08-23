@@ -31,8 +31,8 @@ jobs:
           ls -la
           ls -la public
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+      - name: Deploy to Githu Pages 🚀
+        uses: actions/deploy-pages@v2
         with:
           branch: gh-pages
           folder: public
