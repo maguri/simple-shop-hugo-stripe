@@ -1,4 +1,4 @@
-baseurl = "https://www.blackrhino.com/"
+baseurl = "http://localhost:1313/"
 title = "BLACK RHINO"
 theme = "hugo-creative-portfolio-theme"
 languageCode = "en-us"
