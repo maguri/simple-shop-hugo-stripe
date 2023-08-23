@@ -57,5 +57,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
           with:
-          token: ${{ secrets.GITHUB_PAGES_TOKEN }}
+            token: ${{ secrets.GITHUB_PAGES_TOKEN }}
 
