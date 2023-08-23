@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,8 +19,14 @@ jobs:
         run: |
           sudo apt update
           sudo apt install hugo
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v3
 
-      - name: Build Website
+      - name: Build Hugo Website
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_ENV: production
         run: |
           ls -la
           hugo -s .
@@ -31,9 +37,20 @@ jobs:
           ls -la
           ls -la public
 
-      - name: Deploy to Githu Pages 🚀
-        uses: actions/deploy-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          branch: gh-pages
-          folder: public
+          path: ./public
+
+ # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
 
